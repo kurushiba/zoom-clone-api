@@ -75,6 +75,16 @@ io.on('connection', (socket) => {
     if (meeting == null) {
       return;
     }
+
+    // 同じIDの参加者がすでに存在する場合は参加を拒否
+    if (meeting.participants.some((p) => p.id === participant.id)) {
+      return;
+    }
+
+    if (meeting.participants.length >= 2) {
+      return;
+    }
+
     meeting.participants.push({ ...participant, socketId: socket.id });
 
     io.to(meetingId).emit('participant-joined', {
