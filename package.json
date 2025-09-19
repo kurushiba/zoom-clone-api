@@ -1,0 +1,42 @@
+{
+  "name": "zoom-clone-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --respawn --transpile-only --files -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc -p . --skipLibCheck",
+    "start": "NODE_ENV=production node -r ./tsconfig-paths-bootstrap.js dist/src/index.js",
+    "typeorm": "TS_NODE_TRANSPILE_ONLY=true npx ts-node ./node_modules/typeorm/cli.js -d ./src/datasource.ts",
+    "migration:generate": "npm run typeorm migration:generate -- -n",
+    "migration:create": "npm run typeorm migration:create -- src/migration/",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1",
+    "sqlite3": "^5.1.7",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.25"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.1.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
